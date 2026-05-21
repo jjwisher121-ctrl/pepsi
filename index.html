@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pepsi Beverages Company – Fort Worth, TX</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --navy:   #001F5B;
+      --blue:   #0035A0;
+      --red:    #E4002B;
+      --ice:    #D6E8FF;
+      --white:  #FFFFFF;
+      --off:    #F4F7FF;
+      --text:   #0A1433;
+      --muted:  #5A6A8A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5vw;
+      height: 70px;
+      background: rgba(0,31,91,0.92);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      color: var(--white);
+      letter-spacing: 2px;
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      background: var(--red);
+      color: var(--white) !important;
+      padding: 0.45rem 1.2rem;
+      border-radius: 2px;
+    }
+    .nav-cta:hover { background: #c8001f; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      background: var(--navy);
+      position: relative;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 100px 5vw 60px;
+    }
+    /* Big circle decoration */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -200px; right: -200px;
+      width: 700px; height: 700px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(0,80,200,0.35) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: -120px; left: -100px;
+      width: 500px; height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(228,0,43,0.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      max-width: 1100px; width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 100px;
+      padding: 0.35rem 1rem;
+      font-size: 0.78rem;
+      color: var(--ice);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge .dot {
+      width: 8px; height: 8px;
+      background: #22ff88;
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(1.3); }
+    }
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3.5rem, 7vw, 6.5rem);
+      line-height: 0.95;
+      color: var(--white);
+      letter-spacing: 2px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 .accent { color: var(--red); }
+    .hero p {
+      color: rgba(255,255,255,0.65);
+      font-size: 1.05rem;
+      line-height: 1.75;
+      max-width: 460px;
+      margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--red);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      border: none;
+      cursor: pointer;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.15s;
+      display: inline-block;
+    }
+    .btn-primary:hover { background: #c8001f; transform: translateY(-1px); }
+    .btn-outline {
+      border: 1.5px solid rgba(255,255,255,0.35);
+      color: var(--white);
+      padding: 0.85rem 2rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      background: transparent;
+      cursor: pointer;
+      border-radius: 2px;
+      text-decoration: none;
+      transition: border-color 0.2s, background 0.2s;
+      display: inline-block;
+    }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,0.05); }
+
+    /* hero visual side */
+    .hero-visual {
+      display: flex; flex-direction: column; gap: 1rem; align-items: flex-end;
+    }
+    .stat-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 1.2rem 1.8rem;
+      width: 280px;
+      backdrop-filter: blur(8px);
+      animation: floatUp 3s ease-in-out infinite alternate;
+    }
+    .stat-card:nth-child(2) { animation-delay: 1s; align-self: flex-start; width: 260px; }
+    .stat-card:nth-child(3) { animation-delay: 0.5s; }
+    @keyframes floatUp {
+      from { transform: translateY(0); }
+      to   { transform: translateY(-8px); }
+    }
+    .stat-card .num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.6rem;
+      color: var(--white);
+      letter-spacing: 1px;
+    }
+    .stat-card .num span { color: var(--red); }
+    .stat-card .label { color: rgba(255,255,255,0.55); font-size: 0.8rem; letter-spacing: 0.06em; text-transform: uppercase; }
+
+    /* ── SECTION SHARED ── */
+    section { padding: 100px 5vw; }
+    .section-label {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--navy);
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+    .section-sub {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.75;
+      max-width: 560px;
+    }
+
+    /* ── ABOUT ── */
+    .about {
+      background: var(--white);
+    }
+    .about-grid {
+      max-width: 1100px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-box {
+      width: 100%; aspect-ratio: 4/3;
+      background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .about-img-box .big-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 7rem;
+      color: rgba(255,255,255,0.12);
+      letter-spacing: 4px;
+      user-select: none;
+    }
+    .about-badge-float {
+      position: absolute;
+      bottom: -20px; right: -20px;
+      background: var(--red);
+      color: var(--white);
+      border-radius: 6px;
+      padding: 1.2rem 1.6rem;
+      text-align: center;
+      box-shadow: 0 12px 30px rgba(228,0,43,0.35);
+    }
+    .about-badge-float .big { font-family: 'Bebas Neue', sans-serif; font-size: 2.4rem; }
+    .about-badge-float .small { font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.85; }
+    .about-points { margin-top: 2rem; display: flex; flex-direction: column; gap: 1rem; }
+    .about-point {
+      display: flex; gap: 1rem; align-items: flex-start;
+    }
+    .about-point .icon {
+      width: 38px; height: 38px; flex-shrink: 0;
+      background: var(--ice); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem;
+    }
+    .about-point h4 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+    .about-point p { color: var(--muted); font-size: 0.85rem; line-height: 1.6; }
+
+    /* ── SERVICES ── */
+    .services { background: var(--off); }
+    .services-inner { max-width: 1100px; margin: 0 auto; }
+    .services-header { margin-bottom: 3.5rem; }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .service-card {
+      background: var(--white);
+      border-radius: 6px;
+      padding: 2rem;
+      border-top: 3px solid transparent;
+      transition: border-color 0.25s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    .service-card:hover {
+      border-top-color: var(--red);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+    .service-icon {
+      width: 50px; height: 50px;
+      background: var(--navy);
+      border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+    .service-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.5rem; }
+    .service-card p { color: var(--muted); font-size: 0.87rem; line-height: 1.7; }
+
+    /* ── REVIEWS ── */
+    .reviews { background: var(--navy); }
+    .reviews-inner { max-width: 1100px; margin: 0 auto; }
+    .reviews .section-title { color: var(--white); }
+    .reviews .section-label { color: #ff6680; }
+    .reviews .section-sub { color: rgba(255,255,255,0.55); }
+    .rating-bar {
+      display: flex; align-items: center; gap: 1.5rem;
+      margin: 2.5rem 0 3rem;
+    }
+    .big-rating {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5rem;
+      color: var(--white);
+      line-height: 1;
+    }
+    .stars { font-size: 1.4rem; }
+    .rating-count { color: rgba(255,255,255,0.5); font-size: 0.85rem; }
+    .review-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .review-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 1.6rem;
+    }
+    .review-card .stars { font-size: 1rem; margin-bottom: 0.8rem; }
+    .review-card p { color: rgba(255,255,255,0.75); font-size: 0.88rem; line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+    .reviewer { color: rgba(255,255,255,0.4); font-size: 0.78rem; letter-spacing: 0.05em; text-transform: uppercase; }
+
+    /* ── CONTACT / MAP ── */
+    .contact { background: var(--white); }
+    .contact-inner { max-width: 1100px; margin: 0 auto; }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      margin-top: 3rem;
+    }
+    .info-block { margin-bottom: 2rem; }
+    .info-block h4 {
+      font-size: 0.75rem; font-weight: 700;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 0.4rem;
+    }
+    .info-block p { font-size: 1rem; color: var(--text); line-height: 1.6; }
+    .info-block a { color: var(--blue); text-decoration: none; }
+    .info-block a:hover { text-decoration: underline; }
+    .hours-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.4rem 2rem;
+    }
+    .hours-row { display: flex; justify-content: space-between; font-size: 0.88rem; color: var(--muted); border-bottom: 1px dashed #e0e6f0; padding: 0.35rem 0; }
+    .hours-row .day { font-weight: 500; color: var(--text); }
+    .map-placeholder {
+      width: 100%;
+      height: 340px;
+      border-radius: 8px;
+      background: linear-gradient(135deg, #e8f0ff 0%, #d0e0ff 100%);
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 1rem;
+      border: 2px solid var(--ice);
+      overflow: hidden;
+      position: relative;
+    }
+    .map-pin { font-size: 3rem; }
+    .map-address {
+      font-size: 0.9rem; font-weight: 600; color: var(--navy);
+      text-align: center; padding: 0 1rem;
+    }
+    .map-link {
+      display: inline-block;
+      background: var(--blue);
+      color: var(--white);
+      padding: 0.6rem 1.4rem;
+      border-radius: 2px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+    .map-link:hover { background: var(--navy); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: #000d29;
+      color: rgba(255,255,255,0.55);
+      padding: 3rem 5vw;
+    }
+    .footer-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; justify-content: space-between; align-items: center;
+      flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      color: var(--white);
+      letter-spacing: 2px;
+    }
+    .footer-logo span { color: var(--red); }
+    .footer-links { display: flex; gap: 1.5rem; }
+    .footer-links a { color: rgba(255,255,255,0.45); font-size: 0.82rem; text-decoration: none; transition: color 0.2s; }
+    .footer-links a:hover { color: var(--white); }
+    .footer-copy { font-size: 0.78rem; }
+
+    /* ── DIVIDER ── */
+    .stripe {
+      height: 4px;
+      background: linear-gradient(90deg, var(--red) 0%, var(--blue) 50%, var(--navy) 100%);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .hero-inner, .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+      .review-cards { grid-template-columns: 1fr; }
+      .nav-links { display: none; }
+    }
+    @media (max-width: 560px) {
+      .services-grid { grid-template-columns: 1fr; }
+      .hours-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">PEPSI <span>BEVERAGES</span></div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#reviews">Reviews</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="tel:+18176254101" class="nav-cta">Call Us</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <span class="dot"></span>
+          Fort Worth, TX · Beverage Distributor
+        </div>
+        <h1>THE <span class="accent">TASTE</span> THAT MOVES FORT WORTH</h1>
+        <p>Pepsi Beverages Company delivers world-class beverage distribution across the Fort Worth area — serving businesses, events, and communities with reliability and a smile.</p>
+        <div class="hero-btns">
+          <a href="#contact" class="btn-primary">Get Directions</a>
+          <a href="tel:+18176254101" class="btn-outline">📞 (817) 625-4101</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="stat-card">
+          <div class="num">34<span>+</span></div>
+          <div class="label">Google Reviews</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">3.9<span>★</span></div>
+          <div class="label">Average Rating</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">7<span>AM</span></div>
+          <div class="label">Open Today · Mon–Fri</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="stripe"></div>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <div class="about-img-box">
+          <span class="big-logo">PEPSI</span>
+        </div>
+        <div class="about-badge-float">
+          <div class="big">★ 3.9</div>
+          <div class="small">Google Rated</div>
+        </div>
+      </div>
+      <div>
+        <p class="section-label">Who We Are</p>
+        <h2 class="section-title">Fort Worth's Trusted Pepsi Distributor</h2>
+        <p class="section-sub">Located at 5201 Blue Mound Rd, we are an authorized Pepsi beverage distribution center proudly serving the greater Fort Worth area. From iconic Pepsi products to the latest innovations, we keep businesses and communities stocked and refreshed.</p>
+        <div class="about-points">
+          <div class="about-point">
+            <div class="icon">📦</div>
+            <div>
+              <h4>Full-Line Distribution</h4>
+              <p>Stocking the complete range of PepsiCo beverages — sodas, waters, energy drinks, juices, and more.</p>
+            </div>
+          </div>
+          <div class="about-point">
+            <div class="icon">🤝</div>
+            <div>
+              <h4>Friendly, Reliable Service</h4>
+              <p>Our customers love our team. "Friendly employees, excellent soda prices!" — a common theme in our reviews.</p>
+            </div>
+          </div>
+          <div class="about-point">
+            <div class="icon">📍</div>
+            <div>
+              <h4>Convenient Location</h4>
+              <p>Easily accessible at 5201 Blue Mound Rd in Fort Worth — open Monday through Saturday.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="services-inner">
+      <div class="services-header">
+        <p class="section-label">What We Offer</p>
+        <h2 class="section-title">Our Distribution Services</h2>
+        <p class="section-sub">We provide comprehensive beverage distribution solutions tailored to retailers, restaurants, event venues, and wholesale buyers across the Fort Worth region.</p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-icon">🥤</div>
+          <h3>Soda & Carbonated Drinks</h3>
+          <p>Full range of Pepsi, Mountain Dew, Sierra Mist, and all flagship PepsiCo carbonated beverages in various sizes and formats.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">💧</div>
+          <h3>Water & Non-Carbonated</h3>
+          <p>Aquafina, Pure Leaf Teas, Gatorade, Lipton, and a wide selection of hydration and wellness drinks.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">⚡</div>
+          <h3>Energy & Sports Drinks</h3>
+          <p>Powering up with Rockstar Energy and Gatorade sports lines for athletic and on-the-go customers.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🏪</div>
+          <h3>Retail & Wholesale Supply</h3>
+          <p>Competitive pricing for retailers, convenience stores, and wholesale buyers. Flexible order quantities available.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🎉</div>
+          <h3>Event & Venue Stocking</h3>
+          <p>We supply events, stadiums, restaurants, and hospitality venues with reliable bulk beverage delivery.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon">🚚</div>
+          <h3>Local Fort Worth Delivery</h3>
+          <p>Serving the greater Fort Worth area with scheduled and on-demand delivery routes to keep your stock fresh.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section class="reviews" id="reviews">
+    <div class="reviews-inner">
+      <p class="section-label">Customer Reviews</p>
+      <h2 class="section-title">What People Are Saying</h2>
+      <p class="section-sub">Rated by our community on Google. Here's what Fort Worth customers think of us.</p>
+      <div class="rating-bar">
+        <div class="big-rating">3.9</div>
+        <div>
+          <div class="stars">⭐⭐⭐⭐</div>
+          <div class="rating-count">Based on 34 Google Reviews</div>
+        </div>
+      </div>
+      <div class="review-cards">
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"Friendly employees, excellent soda prices! Always a pleasure coming in and stocking up."</p>
+          <div class="reviewer">— Google Reviewer</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐</div>
+          <p>"I enjoyed my visit there. The staff was helpful and the selection of Pepsi products was great."</p>
+          <div class="reviewer">— Google Reviewer</div>
+        </div>
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"Great local distributor. Easy to work with for our restaurant supply needs. Highly recommend for businesses in Fort Worth."</p>
+          <div class="reviewer">— Google Reviewer</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="stripe"></div>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="contact-inner">
+      <p class="section-label">Find Us</p>
+      <h2 class="section-title">Visit or Contact Us</h2>
+      <div class="contact-grid">
+        <div>
+          <div class="info-block">
+            <h4>Address</h4>
+            <p>5201 Blue Mound Rd<br>Fort Worth, TX 76106</p>
+          </div>
+          <div class="info-block">
+            <h4>Phone</h4>
+            <p><a href="tel:+18176254101">(817) 625-4101</a></p>
+          </div>
+          <div class="info-block">
+            <h4>Website</h4>
+            <p><a href="http://pepsi.com" target="_blank" rel="noopener">pepsi.com</a></p>
+          </div>
+          <div class="info-block">
+            <h4>Business Hours</h4>
+            <div class="hours-grid">
+              <div class="hours-row"><span class="day">Monday</span><span>7 AM – 5 PM</span></div>
+              <div class="hours-row"><span class="day">Tuesday</span><span>7 AM – 5 PM</span></div>
+              <div class="hours-row"><span class="day">Wednesday</span><span>7 AM – 5 PM</span></div>
+              <div class="hours-row"><span class="day">Thursday</span><span>7 AM – 5 PM</span></div>
+              <div class="hours-row"><span class="day">Friday</span><span>7 AM – 5 PM</span></div>
+              <div class="hours-row"><span class="day">Saturday</span><span>8 AM – 2 PM</span></div>
+              <div class="hours-row"><span class="day">Sunday</span><span>Closed</span></div>
+            </div>
+          </div>
+        </div>
+        <div class="map-placeholder">
+          <div class="map-pin">📍</div>
+          <div class="map-address">5201 Blue Mound Rd,<br>Fort Worth, TX 76106</div>
+          <a href="https://maps.google.com/?q=5201+Blue+Mound+Rd+Fort+Worth+TX+76106" target="_blank" rel="noopener" class="map-link">Open in Google Maps</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-logo">PEPSI <span>BEVERAGES</span> CO.</div>
+      <div class="footer-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+        <a href="http://pepsi.com" target="_blank" rel="noopener">pepsi.com</a>
+      </div>
+      <div class="footer-copy">© 2026 Pepsi Beverages Company · Fort Worth, TX</div>
+    </div>
+  </footer>
+
+</body>
+</html>
